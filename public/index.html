@@ -43,24 +43,24 @@
 		</div>
 		<div class="booking-row">
 			<div class="booking-label">Base price</div>
-			<div class="js-price-by-hour booking-label text-center" id="priceByHour"></div>
-			<div class="js-price-by-person booking-label text-center" id="priceByPerson"></div>
+			<div class="js-price-by-hour booking-label text-center font-size-2" id="priceByHour"></div>
+			<div class="js-price-by-person booking-label text-center font-size-2" id="priceByPerson"></div>
 		</div>
 		<div class="booking-row">
 			<div class="booking-label">Reduction:</div>
-			<div class="js-price-by-hour booking-box text-center red-text">-<span id="myReduction">0</span>%</div>
+			<div class="js-price-by-hour booking-box text-center red-text font-size-2">-<span id="myReduction">0</span>%</div>
 		</div>
 		<div class="booking-row">
 			<div class="booking-label">Deductable:</div>
 			<div class="booking-box text-center"><input onclick="deductableChange()" class="js-option" id="myDeduct" type="checkbox"/><span class="js-deductable-price" id="deductablePrice"></span></div>
 		</div>
 		<div class="booking-row">
-			<div class="booking-label">Sum:</div>
-			<div class="js-price booking-box text-center" id="mySum">0</div>
+			<div class="booking-label small-top-margin">Sum:</div>
+			<div class="js-price booking-box text-center font-size-3" id="mySum">0</div>
 		</div>
 		<div class="booking-row">
 			<div class="booking-label"></div>
-			<button id="book-btn"><strong>BOOK</strong></button>			
+			<button id="book-btn" onclick="booking()"><strong>BOOK</strong></button>			
 			<div class="booking-label"></div>
 		</div>
 	</div>

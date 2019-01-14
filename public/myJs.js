@@ -20,7 +20,7 @@ const bars = [{
 
 //list of actors for payment
 //useful from step 5
-const actors = [{
+const actorItem = {
   'eventId': 'bba9500c-fd9e-453f-abf1-4cd8f52af377',
   'payment': [{
     'who': 'booker',
@@ -43,53 +43,7 @@ const actors = [{
     'type': 'credit',
     'amount': 0
   }]
-}, {
-  'eventId': '65203b0a-a864-4dea-81e2-e389515752a8',
-  'payment': [{
-    'who': 'booker',
-    'type': 'debit',
-    'amount': 0
-  }, {
-    'who': 'bar',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'insurance',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'treasury',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'privateaser',
-    'type': 'credit',
-    'amount': 0
-  }]
-}, {
-  'eventId': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
-  'payment': [{
-    'who': 'booker',
-    'type': 'debit',
-    'amount': 0
-  }, {
-    'who': 'bar',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'insurance',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'treasury',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'privateaser',
-    'type': 'credit',
-    'amount': 0
-  }]
-}];
+};
 
 
 const myEvent = {
@@ -99,6 +53,12 @@ const myEvent = {
   'persons': 1,
   'options': {
     'deductibleReduction': false
+  },
+  'price': 0,
+  'commission': {
+    'insurance': 0,
+    'treasury': 0,
+    'privateaser': 0
   }
 };
 
@@ -164,6 +124,47 @@ function calculSum() {
 function deductableChange() {
 	myEvent.options.deductibleReduction = document.getElementById('myDeduct').checked;
 	calculSum();
+}
+
+function booking() {
+	var discount = 0;
+	var additional = 0;
+	var timeComp = 0;
+	var personComp = 0;
+	if(myEvent.persons > 10 && myEvent.persons < 21) {
+		discount = 10;
+	} else if(myEvent.persons > 20 && myEvent.persons < 31) {
+		discount = 30;
+	} else if(myEvent.persons > 30) {
+		discount = 50;
+	}
+	bars.forEach(function (barItem) {
+		if(barItem.id===myEvent.barId){
+			timeComp = barItem.pricePerHour * myEvent.time;
+			personComp = barItem.pricePerPerson * myEvent.persons;
+		}
+	});
+	myEvent.price = (timeComp + personComp)*(100-discount)/100;
+	var commission = (myEvent.price*0.3);
+	myEvent.commission.insurance = commission/2;
+	myEvent.commission.treasury = myEvent.persons;
+	myEvent.commission.privateaser = (commission-myEvent.commission.treasury-myEvent.commission.insurance);	
+	if(myEvent.options.deductibleReduction) {
+		additional = myEvent.persons;
+	}
+	myEvent.commission.privateaser = additional + myEvent.commission.privateaser;
+	myEvent.price = additional + myEvent.price;
+	
+		
+	actorItem.payment.forEach(function (paymentItem) {
+		if(paymentItem.who == 'booker') paymentItem.amount = myEvent.price;
+		else if(paymentItem.who == 'bar') paymentItem.amount = myEvent.price-commission;
+		else if(paymentItem.who == 'insurance') paymentItem.amount = myEvent.commission.insurance;
+		else if(paymentItem.who == 'treasury') paymentItem.amount = myEvent.commission.treasury;
+		else if(paymentItem.who == 'privateaser') paymentItem.amount = myEvent.commission.privateaser;
+	});
+	console.log(myEvent);
+	console.log(actorItem);
 }
 
 (() => {

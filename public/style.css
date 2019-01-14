@@ -10,6 +10,15 @@
 		  padding: 0 8px;
 }
 
+.font-size-2 {
+	font-size: 1.4em;
+}
+
+.font-size-3 {
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
 .booking-row {
   display: -webkit-flex;
   display: flex;
@@ -24,7 +33,7 @@
 .booking-container {
   width: 350px;
   border: 1px solid;
-  margin-top: 4em;
+  margin-top: 2em;
   background-color: white;
 }
 
