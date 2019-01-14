@@ -1,10 +1,118 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS/HTML Workshop with Privateaser</title>
+    <title>Privateaser booking</title>
+	<link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="bar">
+  <div class="booking-body">
+	<div class="booking-side"></div>
+	<div class="booking-container">
+		<div class="booking-title text-center"><h2><strong>Booking</strong></h2></div>
+		<div class="booking-row">
+			<div class="booking-label small-top-margin">Name:</div>
+			<div class="booking-box text-center"><input size="20" class="js-name" type="text"></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label small-top-margin">Bar:</div>
+			<div class="booking-box text-center">
+				<select class="js-bar" id="myBars" onchange="loadPricePers()">
+				</select>
+			</div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Price:</div>
+			<div class="js-price-per-hour booking-label text-center" id="pricePerHour"></div>
+			<div class="js-price-per-person booking-label text-center" id="pricePerPerson"></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label small-top-margin">Quantity:</div>
+			<div class="booking-label text-center">
+				<select class="js-time" id="myHours" onchange="hourChange()">
+					<option value=1>1 hour</option>
+					<option value=2>2 hours</option>
+					<option value=3>3 hours</option>
+					<option value=4>4 hours</option>
+					<option value=5>5 hours</option>
+					<option value=6>6 hours</option>
+					<option value=7>7 hours</option>
+					<option value=8>8 hours</option>
+				</select>
+			</div>
+			<div class="booking-label text-center"><input class="js-price-by-person" id="myPersons" type="number" value="1" onchange="personChange()"/> persons</div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Base price</div>
+			<div class="js-price-by-hour booking-label text-center" id="priceByHour"></div>
+			<div class="js-price-by-person booking-label text-center" id="priceByPerson"></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Reduction:</div>
+			<div class="js-price-by-hour booking-box text-center red-text">-<span id="myReduction">0</span>%</div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Deductable:</div>
+			<div class="booking-box text-center"><input onclick="deductableChange()" class="js-option" id="myDeduct" type="checkbox"/><span class="js-deductable-price" id="deductablePrice"></span></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Sum:</div>
+			<div class="js-price booking-box text-center" id="mySum">0</div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label"></div>
+			<button id="book-btn"><strong>BOOK</strong></button>			
+			<div class="booking-label"></div>
+		</div>
+	</div>
+	<div class="booking-side"></div>
+  </div>
+  
+  
+  
+  <!--<div class="booking-body">
+	<div class="booking-side"></div>
+	<div class="booking-container">
+		<div class="booking-title text-center"><h2><strong>Booking</strong></h2></div>
+		<div class="booking-row">
+			<div class="booking-label">Bar:</div>
+			<div class="booking-box text-center"><input class="js-name" type="text" placeholder="Bar name"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Price/hour:</div>
+			<div class="js-price-per-hour booking-label text-center"><input class="js-price-by-hour" type="number" placeholder="Price by hour"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Price/person:</div>
+			<div class="js-price-per-hour booking-label text-center"><input class="js-price-by-person" type="number" placeholder="Price by hour"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Name:</div>
+			<div class="booking-box text-center"><input class="js-name" type="text" placeholder="Booker name"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Hours:</div>
+			<div class="js-price-per-hour booking-label text-center"><input class="js-time" type="number" placeholder="Time in h"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Persons:</div>
+			<div class="js-price-per-hour booking-label text-center"><input class="js-persons" type="number" placeholder="Persons"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label">Deductable:</div>
+			<div class="booking-box text-center"><input class="js-option" type="checkbox" placeholder="Deductible option"/></div>
+		</div>
+		<div class="booking-row">
+			<div class="booking-label"></div>
+			<button id="compute">Compute</button>			
+			<div class="booking-label"></div>
+		</div>
+		<div class="booking-row">
+			<div class="js-price booking-box text-center"><strong><div id="actors"></div></strong></div>
+		</div>
+	</div>
+	<div class="booking-side"></div>
+  </div>-->
+    <!--<div id="bar">
       <input class="js-name" type="text" placeholder="Bar name"/>
       <input class="js-price-by-hour" type="number" placeholder="Price by hour"/>
       <input class="js-price-by-person" type="number" placeholder="Price by person"/>
@@ -18,6 +126,7 @@
     <button id="compute">Compute</button>
     <div id="actors"></div>
     <script src="privateaser.js"></script>
-    <script src="index.js"></script>
+    <script src="index.js"></script>-->
+  <script src="myJs.js"></script>
   </body>
 </html>
