@@ -155,14 +155,16 @@ function booking() {
 	myEvent.commission.privateaser = additional + myEvent.commission.privateaser;
 	myEvent.price = additional + myEvent.price;
 	
-		
+	var alertString = '';
 	actorItem.payment.forEach(function (paymentItem) {
 		if(paymentItem.who == 'booker') paymentItem.amount = myEvent.price;
 		else if(paymentItem.who == 'bar') paymentItem.amount = myEvent.price-commission;
 		else if(paymentItem.who == 'insurance') paymentItem.amount = myEvent.commission.insurance;
 		else if(paymentItem.who == 'treasury') paymentItem.amount = myEvent.commission.treasury;
 		else if(paymentItem.who == 'privateaser') paymentItem.amount = myEvent.commission.privateaser;
+		alertString = alertString + paymentItem.who + " " + paymentItem.type + " " + paymentItem.amount + "\n";		
 	});
+	alert(alertString);
 	console.log(myEvent);
 	console.log(actorItem);
 }
